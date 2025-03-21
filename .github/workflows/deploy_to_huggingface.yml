@@ -1,23 +1,20 @@
-name: Sync to Hugging Face Hub
+name: Deploy to Hugging Face
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  sync-to-hub:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Upload to Hugging Face Space
+        uses: huggingface/hub-action@v1  # Use v1 instead of v1.4.4
         with:
-          fetch-depth: 0
-          lfs: true
-      - name: Sync with Hugging Face Hub
-        uses: nateraw/huggingface-sync-action@v0.0.5
-        with:
-          github_repo_id: 'princegarg53/GeoChat-main'
-          huggingface_repo_id: 'Prince53/GeochatP'
-          hf_token: ${{ secrets.HF_TOKEN }}
-          repo_type: 'space'
-          private: false
-          space_sdk: 'gradio'
+          repo-id: Prince53/GeochatP  # Make sure this matches your Hugging Face username and space name
+          repo-type: space
+          hf-token: ${{ secrets.HF_TOKEN }}
