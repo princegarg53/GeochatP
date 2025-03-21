@@ -16,7 +16,7 @@ jobs:
         uses: nateraw/huggingface-sync-action@v0.0.5
         with:
           github_repo_id: 'princegarg53/GeoChat-main'
-          huggingface_repo_id: 'princegarg53/GeochatP'
+          huggingface_repo_id: 'Prince53/GeochatP'
           hf_token: ${{ secrets.HF_TOKEN }}
           repo_type: 'space'
           private: false
